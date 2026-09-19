@@ -10,8 +10,9 @@ export class OpenAIOperations {
         ];
 
         this.openai = new OpenAI({
-            apiKey: openai_key
-        });
+    apiKey: openai_key,
+    baseURL: "https://api.groq.com/openai/v1"
+});
 
         this.model_name = model_name;
         this.history_length = Number(history_length) || 5;
