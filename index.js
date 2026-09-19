@@ -8,7 +8,6 @@ import {TwitchBot} from './twitch_bot.js';
 
 // Start keep alive cron job
 job.start();
-console.log(process.env);
 
 // Setup express app
 const app = express();
@@ -136,7 +135,6 @@ app.ws('/check-for-updates', (ws, req) => {
 const messages = [{role: 'system', content: 'You are a helpful Twitch Chatbot.'}];
 console.log('GPT_MODE:', GPT_MODE);
 console.log('History length:', HISTORY_LENGTH);
-console.log('OpenAI API Key:', OPENAI_API_KEY);
 console.log('Model Name:', MODEL_NAME);
 
 app.use(express.json({extended: true, limit: '1mb'}));
@@ -182,7 +180,7 @@ app.get('/gpt/:text', async (req, res) => {
     }
 });
 
-const server = app.listen(3000, () => {
+const server = app.listen(process.env.PORT || 3000, '0.0.0.0', () => {
     console.log('Server running on port 3000');
 });
 
